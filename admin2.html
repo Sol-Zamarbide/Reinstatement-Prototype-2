@@ -1,0 +1,544 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <script src="/config.js"></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signal Detection — Pfizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <script type="module" crossorigin="" src="/assets/index-BLtqbfur.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-DHY8-Dm0.css">
+    <link rel="stylesheet" href="pharmacies.css">
+    <style>
+      .option2-tabs { display: flex; gap: 4px; margin-bottom: 16px; border-bottom: 1px solid var(--color-divider); }
+      .option2-tab { margin-bottom: -1px; border: 0; border-bottom: 2px solid transparent; background: none; padding: 8px 12px; font-size: 13px; font-weight: 600; color: var(--color-ink-3); cursor: pointer; }
+      .option2-tab[aria-selected="true"] { color: var(--color-accent); border-bottom-color: var(--color-accent); }
+      #option2-uploads[hidden], #option2-requests[hidden], #option2-table-wrap[hidden], #option2-empty[hidden] { display: none !important; }
+      #option2-backdrop[hidden], #option2-drawer[hidden] { display: none !important; }
+      #option2-backdrop { position: fixed; inset: 0; z-index: 70; background: rgba(16, 19, 28, 0.35); }
+      #option2-drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 80; display: flex; width: min(420px, 100vw); flex-direction: column; background: var(--color-surface); border-left: 1px solid var(--color-line); box-shadow: var(--shadow-pop); }
+      .option2-drawer-body { flex: 1; overflow-y: auto; padding: 0 20px; }
+      .option2-section { padding: 22px 0; border-top: 1px solid var(--color-divider); }
+      .option2-section:first-child { border-top: 0; }
+      .option2-label { margin: 0 0 10px; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-ink-4); }
+      .option2-name { margin: 0; font-size: 14px; font-weight: 700; color: var(--color-ink); }
+      .option2-email { display: inline-block; margin-top: 4px; font-size: 12.5px; color: var(--color-accent); text-decoration: none; }
+      .option2-email:hover { text-decoration: underline; }
+      .option2-meta { margin: 8px 0 0; font-size: 12.5px; color: var(--color-ink-3); }
+      .option2-justification { white-space: pre-wrap; border-radius: 8px; background: var(--color-page-soft); padding: 12px 14px; font-size: 13px; line-height: 1.5; color: var(--color-ink-2); }
+      .option2-docs-empty { margin: 0; font-size: 13px; color: var(--color-ink-3); }
+      .option2-doc { display: flex; align-items: center; gap: 10px; margin-top: 8px; padding: 8px 10px; border: 1px solid var(--color-line); border-radius: 8px; background: var(--color-surface); }
+      .option2-doc:first-child { margin-top: 0; }
+      .option2-doc-icon { display: flex; flex-shrink: 0; color: var(--color-ink-3); }
+      .option2-doc-main { min-width: 0; flex: 1; }
+      .option2-doc-name { overflow: hidden; font-size: 13px; font-weight: 600; color: var(--color-ink); text-overflow: ellipsis; white-space: nowrap; }
+      .option2-doc-size { margin-top: 1px; font-size: 12px; color: var(--color-ink-4); }
+      .option2-doc-download { display: flex; flex-shrink: 0; align-items: center; justify-content: center; width: 28px; height: 28px; border: 0; border-radius: 6px; background: transparent; color: var(--color-ink-3); cursor: pointer; }
+      .option2-doc-download:hover { background: var(--color-accent-softer); color: var(--color-accent); }
+      #option2-request-rows tr { cursor: pointer; }
+      #option2-request-rows tr:hover, #option2-request-rows tr.is-selected { background: var(--color-accent-softer); }
+      #option2-approve:disabled, #option2-reject:disabled { cursor: not-allowed; opacity: 0.45; }
+    </style>
+  <script src="https://assets.adobedtm.com/22baa8e94be8/7dbf628522e0/launch-0c31c0eaa273-development.min.js" async=""></script><script src="https://assets.adobedtm.com/22baa8e94be8/7dbf628522e0/97ad40fac436/RC9bf06e16346746a48ef210978ff05684-source.min.js" async=""></script></head>
+  <body>
+    <div id="root"><div class="flex min-h-screen flex-col"><header class="relative z-40 border-b border-line bg-surface/80 backdrop-blur"><div class="mx-auto flex h-16 max-w-[1600px] items-center gap-4 px-6"><a aria-label="Go to overview" class="flex items-center gap-2.5 rounded-md px-1 py-1 hover:bg-surface-alt" href="/overview?product=Nurtec&amp;dateWin=month&amp;brandMetric=exposure" data-discover="true" data-link-type="internal" data-pfa-click=""><div class="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-accent to-accent-2 text-white shadow-action"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg></div><span class="font-display text-[17px] font-semibold tracking-tight text-ink">Signal Detection</span></a><nav aria-label="Primary" class="ml-2 flex items-center gap-1"><a class="flex h-9 items-center gap-2 rounded-md px-3.5 text-[13.5px] font-semibold transition-colors text-ink-2 hover:bg-accent-softer hover:text-ink" href="/overview?product=Nurtec&amp;dateWin=month&amp;brandMetric=exposure" data-discover="true" data-link-type="internal" data-nav-tracked="1" data-pfa-click=""><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="text-ink-4"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>Overview</a><a class="flex h-9 items-center gap-2 rounded-md px-3.5 text-[13.5px] font-semibold transition-colors text-ink-2 hover:bg-accent-softer hover:text-ink" href="/signals" data-discover="true" data-link-type="internal" data-nav-tracked="1" data-pfa-click=""><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="text-ink-4"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>Signals</a><a class="flex h-9 items-center gap-2 rounded-md px-3.5 text-[13.5px] font-semibold transition-colors text-ink-2 hover:bg-accent-softer hover:text-ink" href="/pharmacies" data-discover="true" data-link-type="internal" data-nav-tracked="1" data-pfa-click=""><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="text-ink-4"><rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M12 8v8M8 12h8"></path></svg>Pharmacies</a></nav><div class="flex-1"></div><div class="relative"><button type="button" aria-expanded="false" aria-label="Notifications — 0 unread" class="relative flex h-9 w-9 items-center justify-center rounded-md border border-line bg-surface text-ink-3 hover:border-line-strong" data-pfa-click=""><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.7 21a2 2 0 0 1-3.4 0"></path></svg></button></div><div class="relative"><button type="button" aria-expanded="false" aria-label="User menu" class="flex items-center gap-2.5 rounded-md px-1.5 py-1 hover:bg-surface-alt" data-pfa-click=""><div class="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-accent-2 to-accent text-[11px] font-bold text-white">SZ</div><div class="hidden text-left leading-tight md:block"><div class="text-[13px] font-semibold text-ink">Sol Zamarbide</div><div class="text-[11.5px] text-ink-4">Core Team</div></div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="text-ink-4"><path d="m6 9 6 6 6-6"></path></svg></button></div></div><div class="border-t border-divider"><div class="mx-auto flex min-h-12 max-w-[1600px] flex-wrap items-center gap-2 px-6 py-1.5"><p class="ml-auto flex items-center gap-2 text-[11.5px] text-ink-3"><span aria-hidden="true" class="flex h-5 w-5 shrink-0 items-center justify-center rounded bg-ai-soft text-ai"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 17l.9 2.1L22 20l-2.1.9L19 23l-.9-2.1L16 20l2.1-.9z"></path></svg></span>Information in the sections identified is created by generative AI. Generative AI is experimental and may make mistakes.</p></div></div></header><main class="mx-auto w-full max-w-[1600px] flex-1 px-6 pb-10 pt-6"><div class="mb-5 flex items-end gap-4"><div><div class="flex items-center gap-2"><div><h1 class="font-display text-[26px] font-bold tracking-tight text-ink">Admin</h1><p id="option2-subtitle" class="mt-1 text-[13.5px] text-ink-3">Manual pharmacy-list uploads</p></div></div></div><div class="flex-1"></div><button type="button" id="option2-reset" class="inline-flex h-8 items-center rounded-md border border-line bg-surface px-3 text-[12.5px] font-semibold text-ink-2 hover:border-line-strong hover:text-ink">Reset prototype data</button></div><div class="option2-tabs" role="tablist" aria-label="Admin sections"><button type="button" class="option2-tab" id="option2-tab-uploads" role="tab" aria-selected="true" aria-controls="option2-uploads">Uploads</button><button type="button" class="option2-tab" id="option2-tab-requests" role="tab" aria-selected="false" aria-controls="option2-requests">Reinstatement requests</button></div><div id="option2-uploads"><div class="mb-4 grid grid-cols-2 gap-4 max-[900px]:grid-cols-1"><section class="rounded-lg border border-line bg-surface p-4 shadow-card"><div class="flex items-start gap-3"><div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-accent-soft text-accent"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg></div><div class="min-w-0 flex-1"><h3 class="text-[14px] font-semibold text-ink">RisRx pharmacy list</h3><p class="mt-0.5 text-[12.5px] leading-relaxed text-ink-3">Excel list of pharmacy NPIs to add to the RisRx monitoring list — every row is added to the watch list, and rows whose NPI matches no pharmacy record get one enabled for them.</p></div></div><button class="mt-3 flex h-9 items-center gap-1.5 rounded-md border border-line bg-surface px-3.5 text-[13px] font-semibold text-ink-2 hover:border-line-strong"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Upload Excel file</button></section><section class="rounded-lg border border-line bg-surface p-4 shadow-card"><div class="flex items-start gap-3"><div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-accent-soft text-accent"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg></div><div class="min-w-0 flex-1"><h3 class="text-[14px] font-semibold text-ink">Terminated pharmacies</h3><p class="mt-0.5 text-[12.5px] leading-relaxed text-ink-3">Excel list of pharmacy NPIs a vendor has turned off — matched pharmacies are marked terminated by that vendor.</p></div></div><button class="mt-3 flex h-9 items-center gap-1.5 rounded-md border border-line bg-surface px-3.5 text-[13px] font-semibold text-ink-2 hover:border-line-strong"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>Upload Excel file</button></section></div><section class="overflow-hidden rounded-lg border border-line bg-surface shadow-card mb-4"><header class="border-b border-divider px-4 py-2.5"><div class="flex items-baseline gap-2"><h2 class="font-display text-[14px] font-semibold text-ink">Upload history</h2><div class="text-[12px] font-semibold text-ink-3"><span class="tnum text-[12.5px] text-ink-3">41 uploads</span></div><span class="flex-1"></span></div></header><div class=""><table class="w-full table-fixed text-left "><thead><tr class="border-b border-divider text-[11px] text-ink-4"><th class="w-8 py-2 pl-5 pr-0"></th><th class="w-[14rem] py-2 pl-5 pr-2 font-semibold uppercase tracking-wide"><button class="flex items-center gap-1 font-semibold uppercase tracking-wide hover:text-ink-2  ">Type</button></th><th class="w-[42%] px-2 py-2 font-semibold uppercase tracking-wide"><button class="flex items-center gap-1 font-semibold uppercase tracking-wide hover:text-ink-2  ">File</button></th><th class="w-[9rem] px-2 py-2 font-semibold uppercase tracking-wide"><button class="flex items-center gap-1 font-semibold uppercase tracking-wide hover:text-ink-2  ">Uploaded by</button></th><th class="w-[14rem] px-2 py-2 font-semibold uppercase tracking-wide"><button class="flex items-center gap-1 font-semibold uppercase tracking-wide hover:text-ink-2  text-ink-2">Uploaded at<span class="text-[9px]">▼</span></button></th><th class="w-[7rem] px-2 py-2 text-right font-semibold uppercase tracking-wide"><button class="flex items-center gap-1 font-semibold uppercase tracking-wide hover:text-ink-2 ml-auto ">Added</button></th><th class="w-[7rem] px-2 py-2 text-right font-semibold uppercase tracking-wide"><button class="flex items-center gap-1 font-semibold uppercase tracking-wide hover:text-ink-2 ml-auto ">Duplicates</button></th><th class="w-[7rem] px-2 py-2 text-right font-semibold uppercase tracking-wide"><button class="flex items-center gap-1 font-semibold uppercase tracking-wide hover:text-ink-2 ml-auto ">Unmatched</button></th><th class="w-[9rem] py-2 pl-2 pr-5 text-right font-semibold uppercase tracking-wide">Status</th></tr></thead><tbody><tr class="border-b border-divider text-[13px] last:border-0"><td class="py-2.5 pl-5 pr-0"><button aria-expanded="false" aria-label="Show results for RisRx-Pharmacy-List - Sample-2_20261005T091752Z.xlsx" class="flex h-6 w-6 items-center justify-center rounded-md text-ink-4 hover:bg-accent-soft hover:text-accent"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="transition-transform"><path d="m9 6 6 6-6 6"></path></svg></button></td><td class="py-2.5 pl-5 pr-2"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-accent/20 bg-accent-soft text-accent  ">RisRx pharmacy list</span></td><td class="px-2 py-2.5 font-mono text-[12px] text-ink-2"><span class="block truncate" title="RisRx-Pharmacy-List - Sample-2_20261005T091752Z.xlsx">RisRx-Pharmacy-List - Sample-2_20261005T091752Z.xlsx</span></td><td class="px-2 py-2.5 text-ink-2">DAHATS01</td><td class="tnum px-2 py-2.5 text-ink-2">Oct 5, 2026, 5:17 AM</td><td class="tnum px-2 py-2.5 text-right font-semibold text-success">0</td><td class="tnum px-2 py-2.5 text-right text-ink-4">343</td><td class="tnum px-2 py-2.5 text-right text-ink-4">62</td><td class="py-2.5 pl-2 pr-5 text-right"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-success-border bg-success-soft text-success  ">Completed</span></td></tr><tr class="border-b border-divider text-[13px] last:border-0"><td class="py-2.5 pl-5 pr-0"><button aria-expanded="false" aria-label="Show results for Terminated-Pharmacies-Sample (6)_20261001T105855Z.xlsx" class="flex h-6 w-6 items-center justify-center rounded-md text-ink-4 hover:bg-accent-soft hover:text-accent"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="transition-transform"><path d="m9 6 6 6-6 6"></path></svg></button></td><td class="py-2.5 pl-5 pr-2"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-danger-border bg-danger-soft text-danger  ">Terminated pharmacies</span></td><td class="px-2 py-2.5 font-mono text-[12px] text-ink-2"><span class="block truncate" title="Terminated-Pharmacies-Sample (6)_20261001T105855Z.xlsx">Terminated-Pharmacies-Sample (6)_20261001T105855Z.xlsx</span></td><td class="px-2 py-2.5 text-ink-2">RAJENK17</td><td class="tnum px-2 py-2.5 text-ink-2">Oct 1, 2026, 6:58 AM</td><td class="tnum px-2 py-2.5 text-right font-semibold text-success">1</td><td class="tnum px-2 py-2.5 text-right text-ink-4">0</td><td class="tnum px-2 py-2.5 text-right text-ink-4">0</td><td class="py-2.5 pl-2 pr-5 text-right"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-success-border bg-success-soft text-success  ">Completed</span></td></tr><tr class="border-b border-divider text-[13px] last:border-0"><td class="py-2.5 pl-5 pr-0"><button aria-expanded="false" aria-label="Show results for RisRx-Pharmacy-List - Sample (3)_20260923T063434Z.xlsx" class="flex h-6 w-6 items-center justify-center rounded-md text-ink-4 hover:bg-accent-soft hover:text-accent"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="transition-transform"><path d="m9 6 6 6-6 6"></path></svg></button></td><td class="py-2.5 pl-5 pr-2"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-accent/20 bg-accent-soft text-accent  ">RisRx pharmacy list</span></td><td class="px-2 py-2.5 font-mono text-[12px] text-ink-2"><span class="block truncate" title="RisRx-Pharmacy-List - Sample (3)_20260923T063434Z.xlsx">RisRx-Pharmacy-List - Sample (3)_20260923T063434Z.xlsx</span></td><td class="px-2 py-2.5 text-ink-2">DAHATS01</td><td class="tnum px-2 py-2.5 text-ink-2">Sep 23, 2026, 2:34 AM</td><td class="tnum px-2 py-2.5 text-right font-semibold text-success">0</td><td class="tnum px-2 py-2.5 text-right text-ink-4">341</td><td class="tnum px-2 py-2.5 text-right text-ink-4">60</td><td class="py-2.5 pl-2 pr-5 text-right"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-success-border bg-success-soft text-success  ">Completed</span></td></tr><tr class="border-b border-divider text-[13px] last:border-0"><td class="py-2.5 pl-5 pr-0"><button aria-expanded="false" aria-label="Show results for Test FIle UAT_RISRx_TripleA_Nurtec-Zavzpret_PharmacyCohort_PTD_05.15.2026_20260922T152852Z.xlsx" class="flex h-6 w-6 items-center justify-center rounded-md text-ink-4 hover:bg-accent-soft hover:text-accent"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="transition-transform"><path d="m9 6 6 6-6 6"></path></svg></button></td><td class="py-2.5 pl-5 pr-2"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-accent/20 bg-accent-soft text-accent  ">RisRx pharmacy list</span></td><td class="px-2 py-2.5 font-mono text-[12px] text-ink-2"><span class="block truncate" title="Test FIle UAT_RISRx_TripleA_Nurtec-Zavzpret_PharmacyCohort_PTD_05.15.2026_20260922T152852Z.xlsx">Test FIle UAT_RISRx_TripleA_Nurtec-Zavzpret_PharmacyCohort_PTD_05.15.2026_20260922T152852Z.xlsx</span></td><td class="px-2 py-2.5 text-ink-2">FOWLEL06</td><td class="tnum px-2 py-2.5 text-ink-2">Sep 22, 2026, 11:28 AM</td><td class="tnum px-2 py-2.5 text-right font-semibold text-success">0</td><td class="tnum px-2 py-2.5 text-right text-ink-4">343</td><td class="tnum px-2 py-2.5 text-right text-ink-4">62</td><td class="py-2.5 pl-2 pr-5 text-right"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-success-border bg-success-soft text-success  ">Completed</span></td></tr><tr class="border-b border-divider text-[13px] last:border-0"><td class="py-2.5 pl-5 pr-0"><button aria-expanded="false" aria-label="Show results for RisRx-Pharmacy-List - Sample TEST_20260921T131321Z.xlsx" class="flex h-6 w-6 items-center justify-center rounded-md text-ink-4 hover:bg-accent-soft hover:text-accent"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="transition-transform"><path d="m9 6 6 6-6 6"></path></svg></button></td><td class="py-2.5 pl-5 pr-2"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-accent/20 bg-accent-soft text-accent  ">RisRx pharmacy list</span></td><td class="px-2 py-2.5 font-mono text-[12px] text-ink-2"><span class="block truncate" title="RisRx-Pharmacy-List - Sample TEST_20260921T131321Z.xlsx">RisRx-Pharmacy-List - Sample TEST_20260921T131321Z.xlsx</span></td><td class="px-2 py-2.5 text-ink-2">ZAMPOA</td><td class="tnum px-2 py-2.5 text-ink-2">Sep 21, 2026, 9:13 AM</td><td class="tnum px-2 py-2.5 text-right font-semibold text-success">0</td><td class="tnum px-2 py-2.5 text-right text-ink-4">343</td><td class="tnum px-2 py-2.5 text-right text-ink-4">62</td><td class="py-2.5 pl-2 pr-5 text-right"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-success-border bg-success-soft text-success  ">Completed</span></td></tr><tr class="border-b border-divider text-[13px] last:border-0"><td class="py-2.5 pl-5 pr-0"><button aria-expanded="false" aria-label="Show results for RisRx-Pharmacy-List - Sample (3)_20260918T081907Z.xlsx" class="flex h-6 w-6 items-center justify-center rounded-md text-ink-4 hover:bg-accent-soft hover:text-accent"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="transition-transform"><path d="m9 6 6 6-6 6"></path></svg></button></td><td class="py-2.5 pl-5 pr-2"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-accent/20 bg-accent-soft text-accent  ">RisRx pharmacy list</span></td><td class="px-2 py-2.5 font-mono text-[12px] text-ink-2"><span class="block truncate" title="RisRx-Pharmacy-List - Sample (3)_20260918T081907Z.xlsx">RisRx-Pharmacy-List - Sample (3)_20260918T081907Z.xlsx</span></td><td class="px-2 py-2.5 text-ink-2">RAJENK17</td><td class="tnum px-2 py-2.5 text-ink-2">Sep 18, 2026, 4:19 AM</td><td class="tnum px-2 py-2.5 text-right font-semibold text-success">1</td><td class="tnum px-2 py-2.5 text-right text-ink-4">3</td><td class="tnum px-2 py-2.5 text-right text-ink-4">1</td><td class="py-2.5 pl-2 pr-5 text-right"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-success-border bg-success-soft text-success  ">Completed</span></td></tr><tr class="border-b border-divider text-[13px] last:border-0"><td class="py-2.5 pl-5 pr-0"><button aria-expanded="false" aria-label="Show results for Terminated-Pharmacies-Sample (2)_20260918T081349Z.xlsx" class="flex h-6 w-6 items-center justify-center rounded-md text-ink-4 hover:bg-accent-soft hover:text-accent"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="transition-transform"><path d="m9 6 6 6-6 6"></path></svg></button></td><td class="py-2.5 pl-5 pr-2"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-danger-border bg-danger-soft text-danger  ">Terminated pharmacies</span></td><td class="px-2 py-2.5 font-mono text-[12px] text-ink-2"><span class="block truncate" title="Terminated-Pharmacies-Sample (2)_20260918T081349Z.xlsx">Terminated-Pharmacies-Sample (2)_20260918T081349Z.xlsx</span></td><td class="px-2 py-2.5 text-ink-2">RAJENK17</td><td class="tnum px-2 py-2.5 text-ink-2">Sep 18, 2026, 4:13 AM</td><td class="tnum px-2 py-2.5 text-right font-semibold text-success">1</td><td class="tnum px-2 py-2.5 text-right text-ink-4">2</td><td class="tnum px-2 py-2.5 text-right text-ink-4">0</td><td class="py-2.5 pl-2 pr-5 text-right"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-success-border bg-success-soft text-success  ">Completed</span></td></tr><tr class="border-b border-divider text-[13px] last:border-0"><td class="py-2.5 pl-5 pr-0"><button aria-expanded="false" aria-label="Show results for RisRx-Pharmacy-List - Sample (2)_20260916T065528Z.xlsx" class="flex h-6 w-6 items-center justify-center rounded-md text-ink-4 hover:bg-accent-soft hover:text-accent"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="transition-transform"><path d="m9 6 6 6-6 6"></path></svg></button></td><td class="py-2.5 pl-5 pr-2"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-accent/20 bg-accent-soft text-accent  ">RisRx pharmacy list</span></td><td class="px-2 py-2.5 font-mono text-[12px] text-ink-2"><span class="block truncate" title="RisRx-Pharmacy-List - Sample (2)_20260916T065528Z.xlsx">RisRx-Pharmacy-List - Sample (2)_20260916T065528Z.xlsx</span></td><td class="px-2 py-2.5 text-ink-2">DAHATS01</td><td class="tnum px-2 py-2.5 text-ink-2">Sep 16, 2026, 2:55 AM</td><td class="tnum px-2 py-2.5 text-right font-semibold text-success">0</td><td class="tnum px-2 py-2.5 text-right text-ink-4">341</td><td class="tnum px-2 py-2.5 text-right text-ink-4">131</td><td class="py-2.5 pl-2 pr-5 text-right"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-success-border bg-success-soft text-success  ">Completed</span></td></tr><tr class="border-b border-divider text-[13px] last:border-0"><td class="py-2.5 pl-5 pr-0"><button aria-expanded="false" aria-label="Show results for RisRx-Pharmacy-List - Sample (2)_20260916T065253Z.xlsx" class="flex h-6 w-6 items-center justify-center rounded-md text-ink-4 hover:bg-accent-soft hover:text-accent"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="transition-transform"><path d="m9 6 6 6-6 6"></path></svg></button></td><td class="py-2.5 pl-5 pr-2"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-accent/20 bg-accent-soft text-accent  ">RisRx pharmacy list</span></td><td class="px-2 py-2.5 font-mono text-[12px] text-ink-2"><span class="block truncate" title="RisRx-Pharmacy-List - Sample (2)_20260916T065253Z.xlsx">RisRx-Pharmacy-List - Sample (2)_20260916T065253Z.xlsx</span></td><td class="px-2 py-2.5 text-ink-2">DAHATS01</td><td class="tnum px-2 py-2.5 text-ink-2">Sep 16, 2026, 2:52 AM</td><td class="tnum px-2 py-2.5 text-right font-semibold text-success">0</td><td class="tnum px-2 py-2.5 text-right text-ink-4">343</td><td class="tnum px-2 py-2.5 text-right text-ink-4">130</td><td class="py-2.5 pl-2 pr-5 text-right"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-success-border bg-success-soft text-success  ">Completed</span></td></tr><tr class="border-b border-divider text-[13px] last:border-0"><td class="py-2.5 pl-5 pr-0"><button aria-expanded="false" aria-label="Show results for Terminated-Pharmacies-Sample_20260916T055947Z.xlsx" class="flex h-6 w-6 items-center justify-center rounded-md text-ink-4 hover:bg-accent-soft hover:text-accent"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="transition-transform"><path d="m9 6 6 6-6 6"></path></svg></button></td><td class="py-2.5 pl-5 pr-2"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-danger-border bg-danger-soft text-danger  ">Terminated pharmacies</span></td><td class="px-2 py-2.5 font-mono text-[12px] text-ink-2"><span class="block truncate" title="Terminated-Pharmacies-Sample_20260916T055947Z.xlsx">Terminated-Pharmacies-Sample_20260916T055947Z.xlsx</span></td><td class="px-2 py-2.5 text-ink-2">RAJENK17</td><td class="tnum px-2 py-2.5 text-ink-2">Sep 16, 2026, 1:59 AM</td><td class="tnum px-2 py-2.5 text-right font-semibold text-success">0</td><td class="tnum px-2 py-2.5 text-right text-ink-4">2</td><td class="tnum px-2 py-2.5 text-right text-ink-4">0</td><td class="py-2.5 pl-2 pr-5 text-right"><span class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[11.5px] font-semibold border border-success-border bg-success-soft text-success  ">Completed</span></td></tr></tbody></table><div class="flex flex-wrap items-center justify-between gap-2 border-t border-divider bg-page-soft px-4 py-2 text-[11.5px] text-ink-4"><span>Showing <span class="tnum">1–10</span> of <span class="tnum">41 uploads</span></span><div class="flex items-center gap-3"><label class="flex items-center gap-1.5">Per page<select aria-label="upload history rows per page" class="h-6 rounded border border-line bg-surface px-1.5 text-[11.5px] font-semibold text-ink-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-40"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select></label><div class="flex items-center gap-2"><button disabled="" class="rounded-md border border-line px-2 py-1 font-semibold text-ink-2 hover:border-line-strong disabled:cursor-not-allowed disabled:opacity-40">Prev</button><span class="tnum">1/5</span><button class="rounded-md border border-line px-2 py-1 font-semibold text-ink-2 hover:border-line-strong disabled:cursor-not-allowed disabled:opacity-40">Next</button></div></div></div></div></section></div><div id="option2-requests" hidden><section class="overflow-hidden rounded-lg border border-line bg-surface shadow-card"><header class="border-b border-divider px-4 py-2.5"><h2 class="font-display text-[14px] font-semibold text-ink">Reinstatement requests</h2></header><p id="option2-empty" class="px-5 py-8 text-center text-[13px] text-ink-3">No reinstatement requests yet.</p><div id="option2-table-wrap" hidden><table class="w-full text-left"><thead><tr class="border-b border-divider text-[11px] text-ink-4"><th class="py-2 pl-5 pr-2 font-semibold uppercase tracking-wide">Pharmacy</th><th class="px-2 py-2 font-semibold uppercase tracking-wide">NPI</th><th class="px-2 py-2 font-semibold uppercase tracking-wide">Requester</th><th class="px-2 py-2 font-semibold uppercase tracking-wide">Submitted Date</th><th class="py-2 pl-2 pr-5 font-semibold uppercase tracking-wide">Status</th></tr></thead><tbody id="option2-request-rows"></tbody></table></div></section></div></main><footer class="mx-auto w-full max-w-[1600px] px-6 pb-20"><p class="border-t border-divider pt-4 text-center text-[11.5px] text-ink-4">Signal Detection is intended for internal use within the US only</p></footer><button aria-expanded="false" class="fixed bottom-6 right-6 z-50 flex h-12 items-center gap-2 rounded-full bg-ai px-5 text-[14px] font-semibold text-white shadow-pop transition-opacity hover:opacity-95" data-pfa-click=""><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 17l.9 2.1L22 20l-2.1.9L19 23l-.9-2.1L16 20l2.1-.9z"></path></svg>Ask AI</button></div><div class="pointer-events-none fixed inset-x-0 top-4 z-[100] flex flex-col items-center gap-2 px-4"></div></div>
+  
+
+<script>_satellite["_runScript1"](function(event, target, Promise) {
+/*
+ * Pfizer Analytics Standards - Main PFConfig
+ * Created by Analytics Team
+ * Last Modified: 2025-05-21
+ * Version 4.1.0
+ * Description: Setup main files for tracking enablement
+ * Release notes:
+ * - Added header to currently existing file (v3.0.0)
+ * - Moved environment retriever function to Framework Setup module (v3.0.0)
+ * - Modified pfConfig setup to keep previous window.pfConfig values (v4.0.0)
+ * - Added targetEnabled setting to pfConfig (v4.1.0)
+ */
+
+const pfConfig = {
+  //*****  MORE COMMON SETTINGS TO EDIT  *****//
+  domains: { // Setting Site Domains
+    dev: 'signaldetection.pfizer.com',
+    prod: 'signaldetection.pfizer.com'
+  },
+  reportSuites: { // Setting Report Suites
+    dev: 'pfizerglobalimintdev',
+    prod: 'pfizerglobalimintprod'
+  },
+  siteNames: { // Setting Site Names
+    dev: 'US INT Dev SignalDetection',
+    prod: 'US INT Prod SignalDetection'
+  },
+  siteCountry: 'US',          // Setting Country Code
+  enableIPAddressTracking: true,  // Track IP address, true - yes (default), false - no
+  enableVisitorId: true,          // Setting Visitor ID Flag (true, false or "consented")
+  //*****  LESS COMMON SETTINGS TO EDIT  *****//
+  campaignParams: 'cmp,cbn,cid',  // Setting Comma Separated Campaign Parameters\
+  canonicalAsPageName: false,     // Use Canonical URL as Page Name
+  customLinks: [],                // Setting Custom Link Tracking Strategy
+  targetEnabled: false,           // Flag to use when Target is enabled
+  trackCampaignAnyTime: false,    // Track cmp any time
+  pageName: { // Setting Page Naming Convension Strategy
+    base: 'path',
+    prefix: '',
+    delimiter: '>',
+    homePage: 'home'
+  },
+  siteSection: { // Setting Site Section Tracking Strategy
+    prefix: '',
+    prefixHost: false,
+    delimiter: '>'
+  },
+  trackingServer: '', // Tracking Servers for FPC
+  trackingServerSecure: '', // Tracking SECURO Servers for FPC
+};
+
+/**************************************************************************************************/
+/*                                 ENVIRONMENT RETRIEVER                                          */
+/*                             DON'T CHANGE ANYTHING ON HERE                                      */
+/**************************************************************************************************/
+
+window.$pfAnalytics = window.$pfAnalytics || {};
+window.$pfAnalytics.getEnvironment = function () {
+  return ((window._satellite.environment || {}).stage !== 'production') ? 'dev' : 'prod';
+};
+
+pfConfig.mode = window.$pfAnalytics.getEnvironment(); // Dev by default, 'prod' only when deployed to production
+
+window.pfConfig = { ...pfConfig, ...window.pfConfig };
+});</script><script>_satellite["_runScript2"](function(event, target, Promise) {
+/*
+ * Pfizer Analytics Standards - Cookies Consent - Cookies Consent Configurations
+ * Created by Analytics Team
+ * Last Modified: 2026-08-14
+ * Version 4.3.0
+ * Description: Setups the configuration for Cookies Consent
+ * Release notes:
+ * - Created first version (v1.0.0)
+ * - Implemented run setup to allow re-run the setup when tool is loaded dynamically (v2.0.0)
+ * - Moved consent seetings logic to core/_consent component (v3.0.0)
+ * - Added GRV as consent tool (v4.0.0)
+ * - Added tool as part of presets (v4.1.0)
+ * - Added option to hide cookies preference button (v4.2.0)
+ * - Added option to set initial one trust enabled categories (v4.3.0)
+ */
+
+(function () {
+
+  const TOOL = 'None'; // Use: None, OneTrust, Evidon, GRV
+  const ONE_TRUST_ID = '< Setup >'; // OneTrust ID. Setup always for OneTrust. Keep as it's for Evidon.
+
+  /**************************************************************************************************/
+  /*                             MAIN CONSENT SETTINGS BY TOOL                                      */
+  /**************************************************************************************************/
+
+  const MAIN_SETTINGS = {
+    OneTrust: {
+      id: ONE_TRUST_ID,           // OneTrust ID. Setup always for OneTrust
+      reload: 'ALWAYS',           // Use: ALWAYS, ALL_ACCEPTED, ALL_DECLINED, AT_LEAST_ONE_ACCEPTED, AT_LEAST_ONE_DECLINED, NEVER
+      analytics_essential: true,  // True if Adobe Analytics tracking is categorized as essential (always enabled)
+    },
+    Evidon: {
+      id: null,                   // Not used
+      reload: 'NEVER',            // Use: ALWAYS, ALL_ACCEPTED, ALL_DECLINED, AT_LEAST_ONE_ACCEPTED, AT_LEAST_ONE_DECLINED, NEVER
+      analytics_essential: false, // True if Adobe Analytics tracking is categorized as essential (always enabled)
+    },
+    GRV: {
+      id: null,                   // Not used
+      reload: 'NEVER',            // Use: ALWAYS, ALL_ACCEPTED, ALL_DECLINED, AT_LEAST_ONE_ACCEPTED, AT_LEAST_ONE_DECLINED, NEVER
+      analytics_essential: false, // True if Adobe Analytics tracking is categorized as essential (always enabled)
+    }
+  };
+
+  /**************************************************************************************************/
+  /*                               OTHER LESS COMMON SETTINGS                                       */
+  /**************************************************************************************************/
+
+  const OTHER_SETTINGS = {
+    opt_out: false,           // Set as true (boolean) to enable opt-out functionality
+    track_buttons: true,      // Set as true (boolean) to enable clicks tracking on OneTrust buttons
+    default_language: 'en',   // Default language for OneTrust when dynamic language is enabled
+    dynamic_language: false,  // Set as true (boolean) to enable dynamic language. Keep it ALWAYS as false if you have a single language on the site
+    initial_enabled_categories: ['essential'], // List of initial enabled categories
+    hide_cookies_preference_btn: false, // Set as true (boolean) to hide OneTrust "Cookies Preference" button
+    ot_consent_categories: { essential: 'C0001', analytics: 'C0002', marketing: 'C0004' },
+  };
+
+  /**************************************************************************************************/
+  /*                                   OTHER SETUP LOGIC                                            */
+  /*                             DON'T CHANGE ANYTHING ON HERE                                      */
+  /**************************************************************************************************/
+
+  MAIN_SETTINGS.None = {}; // None tool has no settings
+
+  $pfAnalytics = window.$pfAnalytics || {};
+  $pfAnalytics.consent = $pfAnalytics.consent || {};
+  $pfAnalytics.consent.setup = { tool: TOOL };
+  $pfAnalytics.consent.presets = { MAIN_SETTINGS, OTHER_SETTINGS, TOOL };
+
+})();
+});</script><script>_satellite["_runScript3"](function(event, target, Promise) {
+/*
+ * Pfizer Analytics Standards - Tracking Flags Configurations
+ * Created by Analytics Team
+ * Last Modified: 2025-05-23
+ * Version 1.0.0
+ * Description: Setups the tracking settings for the analytics framework
+ * Release notes:
+ * - Separated tracking setup section from framework setup (v1.0.0)
+ */
+
+window.$pfAnalytics = window.$pfAnalytics || {};
+$pfAnalytics.config = $pfAnalytics.config || {};
+
+/**************************************************************************************************/
+/*                                    TRACKING SETUP                                              */
+/*                         PLEASE CONFIGURE BASED ON SITE NEEDS                                   */
+/**************************************************************************************************/
+
+$pfAnalytics.config.tracking = {
+  // More Common Settings to Edit
+  clicks: 'custom',            // Enable autotracking of clickable elements (none, plugin, custom or custom-all)
+  chatbot: 'none',             // Enable chatbot tracking (none, salesforce, custom)
+  iframe: false,               // Enable tracking from iframe window
+  scroll: false,               // Enable scroll tracking
+  vev: false,                  // Enable VEV Interactive tracking
+  video: true,                 // Enable tracking of Brightcove, YouTube and HTML5 videos
+  // Less Common Settings to Edit
+  datalayerEvent: true,         // Enable the datalayer event listener
+  iframePageviews: false,       // Enable sending of pageview from iframe. If enabled there will be pageview from parent and iframe
+  iframePassThrough: false,     // Enable iframe tracking from iframe itself. If false iframe tracking is passed to parent window
+  shadowDom: null,              // Enable autotracking of elements from shadow DOM (false to disable, true to enable, null to detect automatically)
+  singlePageApplication: false, // Allow multiple pageview in same page for Single Page Applications (use "auto" for auto pageviews)
+  smartTracking: false,         // Enable Smart Tracking components
+  websdk: false,                // Enable WebSDK tracking
+};
+});</script><script>_satellite["_runScript4"](function(event, target, Promise) {
+/*
+ * Pfizer Analytics Standards - Advanced Framework Configuration
+ * Created by Analytics Team
+ * Last Modified: 2025-11-10
+ * Version 3.2.0
+ * Description: Setup the main configuration for the Analytics Framework as bundle files locations, events and other settings
+ * Release notes:
+ * - Renamed module to Framework Config (v2.0.0)
+ * - Moved Tracking Setup and enviroment retriever to here (v2.0.0)
+ * - Added missing smart tracking cofiguration flag (v2.1.0)
+ * - Moved tracking setting to separate file, and refactorized advanced setup to allow bundle conditionals based on previous tracking setup flags (v3.0.0)
+ * - Added EVENT_TRIGGER_CUSTOM_SETUP to the setup config (v3.1.0)
+ * - Removed EVENT_TRIGGER_CUSTOM_SETUP from the setup config because it was not needed anymore (v3.2.0)
+ */
+
+window.$pfAnalytics = window.$pfAnalytics || {};
+$pfAnalytics.config = $pfAnalytics.config || {};
+
+/**************************************************************************************************/
+/*                                    FRAMEWORK SETUP                                             */
+/*                DON'T CHANGE ANYTHING ON HERE UNLESS YOU KNOW WHAT YOU'RE DOING                 */
+/**************************************************************************************************/
+
+(function () {
+
+  const bundles = {
+    middleware: {
+      dev: 'https://analytics.digitalpfizer.com/js/dev/pcc/analytics-middleware.js',
+      prod: 'https://analytics.digitalpfizer.com/js/prod/pcc/analytics-middleware.js',
+    },
+    regular: {
+      dev: 'https://analytics.digitalpfizer.com/js/dev/libs/pfanalytics-bundle.min.js',
+      prod: 'https://analytics.digitalpfizer.com/js/prod/libs/pfanalytics-bundle.min.js',
+    },
+    smart: {
+      dev: 'https://analytics.digitalpfizer.com/js/dev/libs/pfanalytics-bundle.smartt.min.js',
+      prod: 'https://analytics.digitalpfizer.com/js/prod/libs/pfanalytics-bundle.smartt.min.js',
+    },
+  };
+
+  const eventNames = {
+    EVENT_BEFORE_CONSENT_RUN: 'pfABeforeConsentRun',
+    EVENT_CONSENT_CHANGED: 'pfAConsentChanged',
+    EVENT_CONSENT_GIVEN: 'pfAConsentGiven',
+    EVENT_CONSENT_RUN: 'pfAConsentRun',
+    EVENT_DATALAYER: 'pfAnalytics',
+  };
+
+  $pfAnalytics.config.setup = { ...eventNames };
+  $pfAnalytics.config.setup.PREVENT_TAGS_FROM_IFRAME = true;
+
+  // Bundle File
+  $pfAnalytics.config.setup.appmeasurement_dev = $pfAnalytics.config.tracking.smartTracking ? bundles.smart.dev : bundles.regular.dev;
+  $pfAnalytics.config.setup.appmeasurement_prod = $pfAnalytics.config.tracking.smartTracking ? bundles.smart.prod : bundles.regular.prod;
+
+  // HCP Middleware File
+  $pfAnalytics.config.setup.helixmiddleware_dev = bundles.middleware.dev;
+  $pfAnalytics.config.setup.helixmiddleware_prod = bundles.middleware.prod;
+
+  // Tracking using WebSDK
+  $pfAnalytics.config.setup.WEBSDK = $pfAnalytics.config.tracking.websdk;
+
+})();
+});</script><script>_satellite["_runScript5"](function(event, target, Promise) {
+/*
+ * Pfizer Analytics Standards - Datalayer Event Pre-Listener
+ * Created by Analytics Team
+ * Last Modified: 2025-05-28
+ * Version 1.1.0
+ * Description: Creates a pre-listener for the DataLayer event to prevent missing event when framework is not yet loaded.
+ *              This script must be setup in 01 rule to make it run as soon as possible.
+ * Release notes:
+ * - Created first version of the script (v1.0.0)
+ * - Added document.body validation to avoid errors when body is not yet available (v1.1.0)
+ */
+
+/**************************************************************************************************/
+/*                             DON'T CHANGE ANYTHING ON HERE                                      */
+/**************************************************************************************************/
+
+(function () {
+
+  // Validates datalayer event listener is not already set up
+  if (window.$pfAnalytics?.status?.datalayer_event) {
+    return; // Exit from execution
+  }
+
+  window.PFA_DATALAYER_EVENT = $pfAnalytics.config.setup.EVENT_DATALAYER || 'pfAnalytics';
+  window.$pfaDataLayer = window.$pfaDataLayer || [];
+
+  /**
+   * Event listener for the DataLayer event when the framework is not yet loaded
+   * @param {Event} event - The event object
+   */
+  const eventListener = function (event) {
+    // Validates datalayer event listener is not already set up
+    if (window.$pfAnalytics?.status?.datalayer_event) {
+      removeListener(); // Remove listener to avoid multiple executions
+      return;
+    } else if (!event.detail || !event.detail.length) {
+      console.error('*** PF_ANALYTICS >> Datalayer event is not valid ***', event);
+      return;
+    }
+    window.$pfaDataLayer.push({ event: window.PFA_DATALAYER_EVENT, detail: event.detail }); // Push event to the DataLayer
+  };
+
+  /**
+   * Removes the event listener for the DataLayer event when the framework is loaded
+   */
+  const removeListener = function () {
+    document.body.removeEventListener(window.PFA_DATALAYER_EVENT, eventListener);
+  };
+
+  // Add the event listener
+  if (document.body) {
+    document.body.addEventListener(window.PFA_DATALAYER_EVENT, eventListener);
+  } else {
+    setTimeout(() => document.body.addEventListener(window.PFA_DATALAYER_EVENT, eventListener), 200); // Retry adding the listener after 100ms if body is not available
+  }
+
+})();
+});</script><script>_satellite["_runScript6"](function(event, target, Promise) {
+/*
+ * Pfizer Analytics Framework - Core
+ * Created by Analytics Team
+ * Last Modified: 2026-03-23
+ * Version 4.17.2709
+ * Basics/Core v5.2.0 (2024-10-24)
+ * Basics/Namespaces v3.1.0 (2025-05-21)
+ * Basics/Consent v2.8.0 (2026-03-03)
+ * Basics/Constants v1.2.5 (2025-05-23)
+ * Basics/Essentials v1.4.0 (2025-12-23)
+ * Basics/Flags v1.3.0 (2025-06-03)
+ * Basics/Logs v2.7.2 (2026-03-04)
+ * Core/Namespaces Shortcuts v1.0.0 (2025-03-13)
+ * Core/WebSDK Debugger v1.0.2 (2024-06-17)
+ */
+/* eslint-disable */
+$pfAnalytics=window.$pfAnalytics||{},$pfAnalytics._=$pfAnalytics._||{},$pfAnalytics._.versionsindex=$pfAnalytics._.versionsindex||{},4400<(isNaN($pfAnalytics._.versionsindex._namespaces)?0:$pfAnalytics._.versionsindex._namespaces)||($pfAnalytics._.versionsindex._namespaces=4400,$pfAnalytics=window.$pfAnalytics||{},$pfAnalytics.api=$pfAnalytics.api||{},$pfAnalytics.appmeasurement=$pfAnalytics.appmeasurement||{},$pfAnalytics.smart=$pfAnalytics.smart||{},$pfAnalytics.config=$pfAnalytics.config||{},$pfAnalytics.config.setup=$pfAnalytics.config.setup||{},$pfAnalytics.config.tracking=$pfAnalytics.config.tracking||{},$pfAnalytics.consent=$pfAnalytics.consent||{},$pfAnalytics.handlers=$pfAnalytics.handlers||{},$pfAnalytics.datalayer=$pfAnalytics.datalayer||{},$pfAnalytics.hooks=$pfAnalytics.hooks||{},$pfAnalytics.helpers=$pfAnalytics.helpers||{},$pfAnalytics.on=$pfAnalytics.on||{},$pfAnalytics.pixels=$pfAnalytics.pixels||{},$pfAnalytics.smart=$pfAnalytics.smart||{},$pfAnalytics.status=$pfAnalytics.status||{},$pfAnalytics.versions={},$pfAnalytics._=$pfAnalytics._||{},$pfAnalytics._.components=$pfAnalytics._.components||{},$pfAnalytics._.flags=$pfAnalytics._.flags||{},$pfAnalytics._.lastModified=$pfAnalytics._.lastModified||{},$pfAnalytics._.panel=$pfAnalytics._.panel||{},$pfAnalytics._.queues=$pfAnalytics._.queues||{},$pfAnalytics._.tests=$pfAnalytics._.tests||{},$pfAnalytics._.timestamp=$pfAnalytics._.timestamp||{},$pfAnalytics._.tmp=$pfAnalytics._.tmp||{},$pfAnalytics._.versionsindex=$pfAnalytics._.versionsindex||{},$pfAnalytics.status.aa_library=$pfAnalytics.status.aa_library||!1,$pfAnalytics.status.aa_loaded=$pfAnalytics.status.aa_loaded||!1,$pfAnalytics.status.aa_pageview=$pfAnalytics.status.aa_pageview||!1,$pfAnalytics.status.consent_beforerun=$pfAnalytics.status.consent_beforerun||!1,$pfAnalytics.status.consent_dispatched=$pfAnalytics.status.consent_dispatched||!1,$pfAnalytics.status.consent_run=$pfAnalytics.status.consent_run||!1,$pfAnalytics.status.consent_setup=$pfAnalytics.status.consent_setup||!1,$pfAnalytics.status.consent_triggered=$pfAnalytics.status.consent_triggered||!1,$pfAnalytics.status.helix_middleware=$pfAnalytics.status.helix_middleware||!1,$pfAnalytics.status.init_called=$pfAnalytics.status.init_called||!1,$pfAnalytics.status.initialized=$pfAnalytics.status.initialized||!1,$pfAnalytics.status.initialize_run=$pfAnalytics.status.initialize_run||!1,$pfAnalytics.status.ready=$pfAnalytics.status.ready||!1,$pfAnalytics.hooks.afterPageview=$pfAnalytics.hooks.afterPageview||[],$pfAnalytics.hooks.beforePageview=$pfAnalytics.hooks.beforePageview||[],$pfAnalytics.hooks.pageChange=$pfAnalytics.hooks.pageChange||[],$pfAnalytics.hooks.VideoStarted=$pfAnalytics.hooks.VideoStarted||[],$pfAnalytics.hooks.Video25=$pfAnalytics.hooks.Video25||[],$pfAnalytics.hooks.Video50=$pfAnalytics.hooks.Video50||[],$pfAnalytics.hooks.Video75=$pfAnalytics.hooks.Video75||[],$pfAnalytics.hooks.VideoCompleted=$pfAnalytics.hooks.VideoCompleted||[],$pfAnalytics.hooks.ScrollStarted=$pfAnalytics.hooks.ScrollStarted||[],$pfAnalytics.hooks.Scroll25=$pfAnalytics.hooks.Scroll25||[],$pfAnalytics.hooks.Scroll50=$pfAnalytics.hooks.Scroll50||[],$pfAnalytics.hooks.Scroll75=$pfAnalytics.hooks.Scroll75||[],$pfAnalytics.hooks.Scroll100=$pfAnalytics.hooks.Scroll100||[],$pfAnalytics.hooks.AudioStarted=$pfAnalytics.hooks.AudioStarted||[],$pfAnalytics.hooks.Audio25=$pfAnalytics.hooks.Audio25||[],$pfAnalytics.hooks.Audio50=$pfAnalytics.hooks.Audio50||[],$pfAnalytics.hooks.Audio75=$pfAnalytics.hooks.Audio75||[],$pfAnalytics.hooks.AudioCompleted=$pfAnalytics.hooks.AudioCompleted||[],$pfAnalytics._.queues.analyticsInit=$pfAnalytics._.queues.analyticsInit||[],$pfAnalytics._.queues.frameworkloaded=$pfAnalytics._.queues.frameworkloaded||[],$pfAnalytics._.queues.virtualPageLoad=$pfAnalytics._.queues.virtualPageLoad||[],$pfAnalytics._.panel.queue=$pfAnalytics._.panel.queue||[],window.pfConfig=window.pfConfig||{},window.pfConfig.reportSuites=window.pfConfig.reportSuites||{dev:"",prod:""},window.pfConfig.domains=window.pfConfig.domains||{dev:"",prod:""},window.pfConfig.siteSection=window.pfConfig.siteSection||{},window.pfAnalyticsData=window.pfAnalyticsData||{},window.pfAnalyticsData.pfPage=window.pfAnalyticsData.pfPage||{},window.pfDataLayerSDK=window.pfDataLayerSDK||[],$pfAnalytics.debugPanel=()=>{}),$pfAnalytics=window.$pfAnalytics||{},$pfAnalytics._=$pfAnalytics._||{},$pfAnalytics._.timestamp=$pfAnalytics._.timestamp||{},4800<(isNaN($pfAnalytics._.versionsindex._constants)?0:$pfAnalytics._.versionsindex._constants)||($pfAnalytics._.versionsindex._constants=4800,$pfAnalytics._.constants={ATTR_CID:"data-pfa-cid",ATTR_CLICK:"data-pfa-click",ATTR_COMPONENT:"data-pfa-component",ATTR_LINKNAME:"data-pfa-linkname",ATTR_NOTRACK:"data-pfa-notrack",ATTR_SECTION:"data-pfa-section",AUTOCLICK_SELECTORS:'a, button, input[type="button"], input[type="submit"], [data-pftrack], [sc-pf-data]',CLICK_TYPE:"click",CLICK_TYPE_PIXELS:"mousedown",CONSENT_CAT_ANALYTICS:"analytics",DATALAYER_EVENT:$pfAnalytics.config.setup.EVENT_DATALAYER||"pfAnalytics",EVENT_BEFORE_CONSENT_RUN:$pfAnalytics.config.setup.EVENT_BEFORE_CONSENT_RUN||"pfABeforeConsentRun",FILE_EXTENSIONS:"exe,zip,wav,mp3,mov,mpg,avi,wmv,pdf,doc,docx,xls,xlsx,ppt,pptx,docm,xlsm,pptm,xlsb,docb,mp4",LOGIN_REFERRER:"auth0.com",PII_FIELDS:["first name","last name","given name","full name","email","password","phone","telephone","address","zip code"],SELECTOR_FORM_SUBMIT:'input[type="submit"], button[type="submit"], a[role="button"].submit, a[data-submit]',SELECTOR_FORM_NEXTSTEP:'input[type="button"], button:not([type="submit"])',STORAGE_KEY_EXPERIMENT:"_pfa_experiment_",USER_ID_EVAR:"eVar45"}),$pfAnalytics=window.$pfAnalytics||{},$pfAnalytics._=$pfAnalytics._||{},$pfAnalytics._.timestamp=$pfAnalytics._.timestamp||{},3600<(isNaN($pfAnalytics._.versionsindex._flags)?0:$pfAnalytics._.versionsindex._flags)||($pfAnalytics._.versionsindex._flags=3600,$pfAnalytics.getEnvironment||($pfAnalytics.getEnvironment=function(){return window.pfConfig.mode?window.pfConfig.mode:"production"!==(window._satellite.environment||{}).stage?"dev":"prod"}),$pfAnalytics._production="dev"!==$pfAnalytics.getEnvironment(),$pfAnalytics._.flags.debug=!!sessionStorage.getItem("_pfa_debug_"),$pfAnalytics._.flags.log_errors=!!sessionStorage.getItem("_pfa_log_errors_"),$pfAnalytics._.flags.dev_appmeasurement=!!sessionStorage.getItem("_pfa_dev_appmeasurement_"),$pfAnalytics._.flags.force_cookieswindow=!!sessionStorage.getItem("_pfa_force_cookieswindow_"),$pfAnalytics._.flags.dev_mode=!($pfAnalytics._production||!sessionStorage.getItem("_pfa_dev_mode_")),$pfAnalytics._.flags.qa_mode=!!sessionStorage.getItem("_pfa_qa_queue_"),$pfAnalytics._.flags.debug_trace=!!sessionStorage.getItem("_pfa_debug_trace_"),$pfAnalytics._.flags.dev_helixmiddleware=!!sessionStorage.getItem("_pfa_dev_helixmiddleware_"),$pfAnalytics._.flags.debug_clicks_method=sessionStorage.getItem("_pfa_debug_clicks_method_")||null,$pfAnalytics._.flags.debug_click_type=sessionStorage.getItem("_pfa_debug_click_type_")||null,$pfAnalytics.status.is_spa=!0===$pfAnalytics.config.tracking.singlePageApplication),$pfAnalytics._=$pfAnalytics._||{},$pfAnalytics._.versionsindex=$pfAnalytics._.versionsindex||{},function(){if(8800<(isNaN($pfAnalytics._.versionsindex._logs)?0:$pfAnalytics._.versionsindex._logs))return;$pfAnalytics._.versionsindex._logs=8800;let t=$pfAnalytics._.logs=$pfAnalytics._.logs||null;const n=function(){$pfAnalytics._logsenabled=!1,$pfAnalytics.alert=()=>{},$pfAnalytics.debug=()=>{},$pfAnalytics.devlog=()=>{},$pfAnalytics.error=()=>{},$pfAnalytics.getLog=()=>$pfAnalytics.forceLogError("Logs not enabled"),$pfAnalytics.log=()=>{},$pfAnalytics.logColored=()=>{},$pfAnalytics.qalog=()=>{},$pfAnalytics.trace=()=>{},$pfAnalytics.warning=()=>{}},e=function(){$pfAnalytics.iframe=$pfAnalytics.iframe||{},$pfAnalytics._.flags.debug||$pfAnalytics._.flags.log_errors||$pfAnalytics._.flags.dev_mode||$pfAnalytics._.flags.qa_mode?(n(),s()):n()},s=function(){const n=function(n,s=null,a=null,i=!1,o=null){let c=null,l="%c*** PF_ANALYTICS";s||(s=$pfAnalytics._.flags.isiframe?"#8A66FF":"#3798E7"),$pfAnalytics._.flags.isiframe&&(l+=" >> IFRAME >>"),l+=a?` >> ${a} >> (${t.length+1}) >>`:` >> (${t.length+1}) >>`,o&&(Array.isArray(o)?(c=o[0],l+=`%c ${o[1]} >>`):l+=` ${o} >>`),"string"==typeof n?(t.push({params:Object.assign([],[n]),trace:e()}),l+=` ${n}`,n=[]):t.push({params:Object.assign([],n),trace:e()}),l=l.replace(">> >>",">>"),i?(n.unshift("color: #EB4034; font-weight: bold"),n.unshift(`${l.trim()} >>`),console.error.apply(this,n)):c?(n.unshift(`color: ${c}; font-weight: bold`),n.unshift(`color: ${s}; font-weight: bold`),n.unshift(l.trim()),console.info.apply(this,n)):(n.unshift(`color: ${s}; font-weight: bold`),n.unshift(l.trim()),console.info.apply(this,n))},e=function(){try{return(new Error).stack.split("\n").slice(1).map((t=>t.trim()))}catch(t){return["Error capturing stack trace: "+t]}},s=function(){try{const t=Object.assign([],arguments);n(t,null,null,!0)}catch(t){console.error("*** PF_ANALYTICS >>\n",t)}},a=function(){try{const t=Object.assign([],arguments);1===t.length?n(t[0],"#FFCC00"):n(t,"#FFCC00")}catch(t){console.error("*** PF_ANALYTICS >>\n",t)}};t||(t=$pfAnalytics._.logs=[]),$pfAnalytics._.queues.qalog=$pfAnalytics._.queues.qalog||JSON.parse(sessionStorage.getItem("_pfa_qa_queue_")||"[]"),$pfAnalytics._.flags.debug?($pfAnalytics._logsenabled=!0,$pfAnalytics.alert=function(t,n=!0,e="#d1ecf1",s=null){let a;n&&(a=document.createElement("div"),a.style.position="fixed",a.style.top="0",a.style.left="0",a.style.width="100%",a.style.height="100%",a.style.backgroundColor="rgba(0, 0, 0, 0.5)",a.style.zIndex="999",document.body.appendChild(a));const i=document.createElement("div");i.style.position="fixed",i.style.top="50%",i.style.left="50%",i.style.transform="translate(-50%, -50%)",i.style.backgroundColor=e,i.style.color="#0c5460",i.style.padding="20px",i.style.border="1px solid #bee5eb",i.style.borderRadius="5px",i.style.boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)",i.style.zIndex="1000",i.style.maxWidth="400px";const o=document.createElement("p");o.textContent=t,i.appendChild(o);const c=document.createElement("button");c.textContent="Close",c.style.marginTop="10px",c.style.padding="5px 10px",c.style.backgroundColor="#bee5eb",c.style.border="none",c.style.borderRadius="3px",c.style.cursor="pointer",c.onclick=function(){s&&"function"==typeof s&&s(),document.body.removeChild(i),n&&document.body.removeChild(a)},i.appendChild(c),document.body.appendChild(i)},$pfAnalytics.debug=function(){try{const t=Object.assign([],arguments);n(t,"#28FE14","DEBUG")}catch(t){console.error("*** PF_ANALYTICS >>\n",t)}},$pfAnalytics.error=s,$pfAnalytics.log=function(){try{const t=Object.assign([],arguments);n(t)}catch(t){console.error("*** PF_ANALYTICS >>\n",t)}},$pfAnalytics.logColored=function(){try{const t=Object.assign([],arguments),e=t.shift()||null;n(t,e)}catch(t){console.error("*** PF_ANALYTICS >>\n",t)}},$pfAnalytics.warning=a,$pfAnalytics._.flags.debug_trace&&($pfAnalytics.trace=function(){try{const t=Object.assign([],arguments);t.unshift("\n************************  TRACE  **************************\n\n"),$pfAnalytics.log.apply(this,t),console.trace(),console.log("\n***********************************************************")}catch(t){console.error("*** PF_ANALYTICS >>\n",t)}})):$pfAnalytics._.flags.log_errors?($pfAnalytics._logsenabled=!0,$pfAnalytics.error=s,$pfAnalytics.log=()=>{},$pfAnalytics.warning=()=>{}):$pfAnalytics.isDevEnv()&&($pfAnalytics.warning=a),$pfAnalytics._.flags.dev_mode?$pfAnalytics.devlog=function(){try{const t=Object.assign([],arguments);n(t,"#28FE14","DEV")}catch(t){console.error("*** PF_ANALYTICS >>\n",t)}}:$pfAnalytics.devlog=()=>{},$pfAnalytics._.flags.qa_mode?function(){const t=$pfAnalytics._.flags,s=$pfAnalytics._.queues||{},a=JSON.parse(sessionStorage.getItem("_pfa_sdk_pushes_")||"[]");s.qapushes=JSON.parse(sessionStorage.getItem("_pfa_qa_pushes_")||"[]"),a.push({"New Page Loaded":window.location.pathname,Time:(new Date).toLocaleString()});const i=(t,e)=>{const s=t[0].startsWith("#")?t.shift():null,a="string"==typeof t[0]?t.shift():null,i=!!(1===t.length&&"[object Object]"===Object.prototype.toString.call(t[0])||Array.isArray(t[0])),o=t[t.length-1],c=o&&"object"==typeof o?o:{};let l=null;c.eVar59&&c.events?l=["#FE9900",`Link Name: ${c.eVar59} (${c.events})`]:c.eVar59?l=["#FE9900",`Link Name: ${c.eVar59}`]:c.events&&(l=["#FE9900",`Events: ${c.events}`]),i&&t.unshift("\n"),n(t,s||"#28FE14",a?`QA :: ${a} >> Push #${e}`:`QA >> Push #${e}`,!1,l)},o=()=>{for(let t=0;t<s.qalog.length;t++)"printed"!==s.qalog[t].status&&(i(s.qalog[t].params,s.qalog[t].pushN),s.qalog[t].status="printed");s.qalog=[],sessionStorage.setItem("_pfa_qa_queue_",JSON.stringify(s.qalog))};$pfAnalytics.clearQAPushes=function(){a.length=0,sessionStorage.setItem("_pfa_qa_pushes_","[]"),sessionStorage.setItem("_pfa_sdk_pushes_","[]")},$pfAnalytics.getQAPush=function(t){return t?s.qapushes[t-1]:s.qapushes},$pfAnalytics.getSDKPushes=function(){return[...a,...window.pfDataLayerSDK]},$pfAnalytics.getTrace=e,$pfAnalytics.qalog=function(){try{const n=function(t){return JSON.parse(JSON.stringify(Object.assign([],t)))}(arguments);if(0===n.length)return void o();if(n[0].startsWith("cat:")){$pfAnalytics._.components.qa=$pfAnalytics._.components.qa||{},void 0===$pfAnalytics._.components.qa.categories&&($pfAnalytics._.components.qa.categories=sessionStorage.getItem("_pfa_qa_categories_")||"");const t=n[0].replace("cat:","").trim(),e=$pfAnalytics._.components.qa.categories;if(e&&!e.includes(t))return;n.shift()}(t=>{const n=s.qapushes.length+1;s.qapushes.push(t[2]),s.qalog.push({params:t,page:window.location.pathname,status:"pending",timestamp:(new Date).toLocaleString(),pushN:n}),sessionStorage.setItem("_pfa_qa_queue_",JSON.stringify(s.qalog)),sessionStorage.setItem("_pfa_qa_pushes_",JSON.stringify(s.qapushes)),sessionStorage.setItem("_pfa_sdk_pushes_",JSON.stringify($pfAnalytics.getSDKPushes())),document.dispatchEvent(new CustomEvent("pfAQAAutomation",{detail:t}))})(n),setTimeout((()=>t.redirecting?null:o()),500)}catch(t){console.error("*** PF_ANALYTICS >>\n",t)}};const c=()=>{t.redirecting=!1,o()};t.redirecting=!1,window.addEventListener("beforeunload",(()=>t.redirecting=!0)),$pfAnalytics.helpers.bindEvent("click",'a[href^="tel:"], a[href^="mailto:"], button[aria-label*="email" i]',(()=>setTimeout(c,500)))}():$pfAnalytics.qalog=()=>{},$pfAnalytics.getLog=function(n){if(t[n-=1])return t[n];console.error("*** PF_ANALYTICS >> Log not found")}};$pfAnalytics.setLogErrors=function(t){t?($pfAnalytics._.flags.log_errors=!0,sessionStorage.setItem("_pfa_log_errors_","1")):($pfAnalytics._.flags.log_errors=!1,sessionStorage.removeItem("_pfa_log_errors_")),e()},$pfAnalytics.deverror=function(){try{const n=Object.assign([],arguments);var t="";"string"==typeof n[0]&&(t=` ${n[0]}`+(n.length>1?" >":""),n.shift()),n.unshift("color: #EB4034; font-weight: bold"),$pfAnalytics._.flags.isiframe?n.unshift("%c\n *** PF_ANALYTICS >> DEV ERROR >> IFRAME >"+t):n.unshift("%c\n *** PF_ANALYTICS >> DEV ERROR >>"+t),n.push("\n");try{throw new Error}catch(t){n.push(t.stack),n.push("\n\n"),console.error.apply(this,n)}}catch(t){console.error("*** PF_ANALYTICS >>\n",t)}},$pfAnalytics.devwarning=function(){try{const n=Object.assign([],arguments);var t="";"string"==typeof n[0]&&(t=` ${n[0]}`+(n.length>1?" >":""),n.shift()),n.unshift("color: #FFCC00; font-weight: bold"),$pfAnalytics._.flags.isiframe?n.unshift("%c\n *** PF_ANALYTICS >> WARNING >> IFRAME >"+t):n.unshift("%c\n *** PF_ANALYTICS >> WARNING >>"+t),console.info.apply(this,n)}catch(t){console.error("*** PF_ANALYTICS >>\n",t)}},$pfAnalytics.exception=function(t,n,e){let s=t?`${t} =>`:"";if(e)if("string"==typeof e)s+=` ${e} =>`;else try{s+=` ${JSON.stringify(e)} =>`}catch(t){s+=` ${e.toString()} =>`}s+="\n\n",$pfAnalytics.error(s,n,"\n\n")},$pfAnalytics.forceLogError=function(t){console.log("%c*** PF_ANALYTICS >> "+t,"color: #ED4337; font-weight: bold")},$pfAnalytics.setupLogs=e,e()}(),$pfAnalytics._=$pfAnalytics._||{},$pfAnalytics._.versionsindex=$pfAnalytics._.versionsindex||{},1200<(isNaN($pfAnalytics._.versionsindex._namespaceshortcut)?0:$pfAnalytics._.versionsindex._namespaceshortcut)||($pfAnalytics._.versionsindex._namespaceshortcut=1200,window.$pfA=$pfAnalytics,window.$pfA.appm=$pfAnalytics.appmeasurement,window.$pfA.CONST=$pfAnalytics._.constants),$pfAnalytics._=$pfAnalytics._||{},$pfAnalytics._.versionsindex=$pfAnalytics._.versionsindex||{},function(){if(2e3<(isNaN($pfAnalytics._.versionsindex._websdkdebugger)?0:$pfAnalytics._.versionsindex._websdkdebugger))return;if($pfAnalytics._.versionsindex._websdkdebugger=2e3,"true"!==localStorage.getItem("com.adobe.reactor.debug")||window._WEBSDK_DEBUGGER)return;window._WEBSDK_DEBUGGER=!0,_satellite.setDebug(!0);const t="[pfanalytics-event]",n="pfAnalytics-WebSDKEvents";let e=!1;const s=function(){const e=JSON.parse(sessionStorage.getItem(n)||"[]");e.forEach((n=>{if(n.printed)return;const e={eVars:n.eVars,props:n.props,events:n.events};let s,a;switch(n.status){case"error":s="#eb4034",e.error=n.error;break;case"success":n.type.toLowerCase().indexOf("pageview")>-1?(a="Analytics: Page View",s="#94c9f7"):(a="Analytics: Other Click",s="#b1d587");break;default:s="#3798e7"}let i=`(${n.status.toUpperCase()}) => ${o=n.type,(o=o.replace(/([a-z])([A-Z])/g,"$1 $2")).toLowerCase().split(" ").map((function(t){return t.charAt(0).toUpperCase()+t.slice(1)})).join(" ")}`;var o;e.eVars.eVar59&&(i+=` => ${e.eVars.eVar59}`),console.info(`%c${t} ${i}\n`,`color: ${s}; font-weight: bold`,e),$pfAnalytics.debugPanel({title:a,data:e},s),n.printed=!0})),sessionStorage.setItem(n,JSON.stringify(e))},a=function(t){return t[1].split(" ")[1].slice(0,-1)},i=function(t){const n={};for(let e in t)if(t.hasOwnProperty(e)&&!(e.indexOf("event")<0))for(let s in t[e])t[e].hasOwnProperty(s)&&(n[s]=t[e][s].value||"");return n},o=function(o){const c=console[o];console[o]=(...o)=>{const l=Array.prototype.slice.call(o);switch(c.apply(console,l),!0){case l.length<3:case"[alloy]"!==l[0]:return;case l[1].indexOf("Executing sendEvent command")>-1:const n=l[2].data&&l[2].data._experience?l[2].data._experience.analytics:{};return void console.warn(`${t} [Send Event]`,JSON.stringify(n.customDimensions||"{}"));case 0!==l[1].indexOf("Request"):return}const p=JSON.parse(sessionStorage.getItem(n)||"[]"),f=l[1].toLowerCase();if(f.indexOf("sending request")>-1)try{!function(t,n){if(!t[2].events||0===t[2].events.length)return;const e=a(t);t[2].events.forEach((t=>{if(!t.data||!t.data._experience||!t.data._experience.analytics)return;const s=t.data._experience.analytics,a=t.xdm&&t.xdm.eventType||"[N/A]",o=s.customDimensions;n.push({requestID:e,type:a.split(".").pop(),eVars:o.eVars||{},props:o.props||{},events:i(s),status:"pending",error:null,timestamp:(new Date).getTime(),printed:!1})}))}(l,p)}catch(n){console.error(`${t}`,n)}else if(f.indexOf("received response")>-1&&f.indexOf("status code 200")>-1)try{!function(t,n){const e=a(t);n.forEach((t=>{t.requestID===e&&(t.status="success")}))}(l,p)}catch(n){console.error(`${t}`,n)}else if(f.indexOf("failed")>-1)try{!function(t,n){const e=t[2].message,s=a(t);n.forEach((t=>{t.requestID===s&&(t.status="error",t.error=e)}))}(l,p)}catch(n){console.error(`${t}`,n)}else f.indexOf("status code 204 and no response body")>-1?console.warn(`${t} [No Response Body]`,f):console.info(`%c${t}`,"color: #3798E7; font-weight: bold",`Not configured message type: ${f}`);sessionStorage.setItem(n,JSON.stringify(p)),setTimeout((()=>e?null:s()),1e3)}};setTimeout((function(){if(!window.alloy)return;let t=0;const n=function(){window.addEventListener("beforeunload",(function(t){e=!0})),o("log"),o("info"),s()},a=setInterval((()=>{window.alloy?(clearInterval(a),setTimeout(n,500)):++t>10&&clearInterval(a)}),1e3)}),1e3)}(),$pfAnalytics.isLoaded=function(){return!1},$pfAnalytics.loadBundle=function(t,n){const e=()=>{$pfAnalytics.status.aa_loaded=!0,$pfAnalytics.printInfo();for(let t of $pfAnalytics._.queues.frameworkloaded||[])try{t.apply(this,arguments)}catch(t){$pfAnalytics.error(t)}$pfAnalytics._.queues.frameworkloaded=null};if(n)return $pfAnalytics.status.aa_library?void 0:($pfAnalytics.log("pfAppMeasurement: Loading from external source"),$pfAnalytics.status.aa_library=!0,void $pfAnalytics.onConditionReady((()=>$pfAnalytics.isLoaded()),e));const s=$pfAnalytics._.constants.PFA_FRAMEWORK_FILE_SELECTOR;if($pfAnalytics.isLoaded()||$pfAnalytics.status.aa_library||document.querySelector(s))return void $pfAnalytics.log("pfAppMeasurement: Load called but file already loaded =>",document.querySelector(s));$pfAnalytics.status.aa_library=!0;const a=$pfAnalytics.config.setup.appmeasurement_dev||"",i=$pfAnalytics.config.setup.appmeasurement_prod||"";if(!a||!i)return void $pfAnalytics.error("FATAL ERROR: No AppMeasurement files configured in setup");var o;o=$pfAnalytics._.flags.dev_mode?a.replace(".min.js",".js"):$pfAnalytics._.flags.dev_appmeasurement||$pfAnalytics.isDevEnv()?a+"?ts="+Date.now():i,$pfAnalytics._.flags.debug&&(o=o.replace(".min.js",".js")),$pfAnalytics.log("pfAppMeasurement: Loading from: "+o);const c=!(!t||"head"!==t.toLowerCase());$pfAnalytics.helpers.createScriptTag(o,(()=>$pfAnalytics.onConditionReady($pfAnalytics.isLoaded,e)),null,c)},$pfAnalytics._=$pfAnalytics._||{},$pfAnalytics._.versionsindex=$pfAnalytics._.versionsindex||{},4400<(isNaN($pfAnalytics._.versionsindex._essentials)?0:$pfAnalytics._.versionsindex._essentials)||($pfAnalytics._.versionsindex._essentials=4400,$pfAnalytics.createScriptTag=function(t,n,e,s){const a=document.createElement("script");a.src=t,a.defer=!0,e?a.onload=function(){$pfAnalytics.onConditionReady(e,n)}:n&&(a.onload=n),s?document.head.appendChild(a):document.body?document.body.appendChild(a):$pfAnalytics.onConditionReady((()=>!!document.body),(()=>document.body.appendChild(a)))},$pfAnalytics.forceCookiesConsentWindow=function(t,n){const e="_pfa_force_cookieswindow_";!function(){if($pfAnalytics._production)return;Object.keys(localStorage).forEach((function(t){t.includes("_evidon_consent")&&localStorage.removeItem(t)}));const t=function(t){$pfAnalytics.onConditionReady({condition:()=>!!document.querySelector(t),callback:()=>{var n=document.querySelector(t);sessionStorage.getItem(e)===t?n.click():(sessionStorage.setItem(e,"1"),n.addEventListener("click",(()=>sessionStorage.setItem(e,t))))}})};document.cookie="_evidon_consent_cookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;",$pfAnalytics.onConditionReady({condition:()=>!(!window.evidon||!window.evidon.notice),callback:()=>{setTimeout((()=>window.evidon.notice.setDomain(n||window.pfConfig.domains.prod||"")),2e3),t("#_evidon-accept-button, #_evidon-banner-acceptbutton"),t("#_evidon-barrier-declinebutton")}})}()},$pfAnalytics.isDebugPanelOn=function(){return!(!$pfAnalytics.panel||!$pfAnalytics.panel.enabled)&&(!!$pfAnalytics._.flags.dev_mode||(!0===$pfAnalytics._.flags.running_local&&$pfAnalytics._.flags.debug?(t=>{const n=parseInt(t.slice(0,4),10),e=parseInt(t.slice(4,6),10)-1,s=parseInt(t.slice(6,8),10),a=parseInt(t.slice(8,10),10),i=parseInt(t.slice(10,12),10),o=new Date(n,e,s,a,i);return(new Date-o)/1e3/60<=30})(($pfAnalytics._.timestamp||{}).bundle||"000000000000"):($pfAnalytics.isDevEnv(),!1)))},$pfAnalytics.isDevEnv=function(){if(!window._satellite||!window._satellite.environment)throw"No Adobe Launch (_satellite) environment configured";return"production"!==window._satellite.environment.stage},$pfAnalytics.isIframeWindow=function(){return window.top!==window.self},$pfAnalytics.loadHelixMiddleware=function(){const t=window.$pfAnalytics.config.setup.helixmiddleware_dev||"",n=window.$pfAnalytics.config.setup.helixmiddleware_prod||"";if(!t||!n)return void $pfAnalytics.error("FATAL ERROR: No Helix Middleware files configured in setup");let e;e=$pfAnalytics._.flags.dev_mode?t.replace(".min.js",".js"):$pfAnalytics._.flags.dev_helixmiddleware||$pfAnalytics.isDevEnv()?t+"?ts="+Date.now():n,$pfAnalytics.log("Loading Helix Middleware: "+e),$pfAnalytics.helpers.createScriptTag(e),$pfAnalytics.status.helix_middleware=!0},$pfAnalytics.onConditionReady=function(t,n){const e=t&&n?{condition:t,callback:n}:t;try{const t=e.max||e.tries||20;let n=t;if(!0===e.condition(n))return void e.callback();const s=e.time||250,a=setInterval((function(){n-=1,!0===e.condition(n)?(clearInterval(a),e.callback()):n<1&&t>0&&(clearInterval(a),e.onTimeOut?e.onTimeOut():e.ifNoMoreTries&&e.ifNoMoreTries())}),s)}catch(t){$pfAnalytics.error?$pfAnalytics.error(t):console.error(t)}},$pfAnalytics.querySelector=function(t){return document.querySelector(t)},$pfAnalytics.querySelectorAll=function(t){return document.querySelectorAll(t)},$pfAnalytics.querySelectorAllShadows=function(t,n){n||(n=document.body);const e=Array.from(n.querySelectorAll("*")).map((function(t){return t.shadowRoot})).filter(Boolean).map((function(n){return $pfAnalytics.querySelectorAllShadows(t,n)}));return Array.from(n.querySelectorAll(t)).concat(e).flat()},$pfAnalytics.setDebug=function(t,n,e=!1){t?($pfAnalytics._.flags.debug=!0,$pfAnalytics._.flags.debug_traces=e||!1,sessionStorage.setItem("_pfa_debug_","1"),n&&sessionStorage.setItem("_pfa_debug_click_type_",n),e&&sessionStorage.setItem("_pfa_debug_trace_","1"),$pfAnalytics.setLogErrors(!0),window.location.reload()):($pfAnalytics._.flags.debug=!1,$pfAnalytics._.flags.debug_traces=!1,sessionStorage.removeItem("_pfa_debug_"),sessionStorage.removeItem("_pfa_debug_click_type_"),sessionStorage.removeItem("_pfa_debug_trace_"),$pfAnalytics.setLogErrors(!1),window.location.reload())},$pfAnalytics.setDevelopment=function(t,n){if($pfAnalytics._production)return sessionStorage.removeItem("_pfa_dev_mode_"),void $pfAnalytics.forceLogError("This action is allowed only in Development");t?sessionStorage.setItem("_pfa_dev_mode_","1"):sessionStorage.removeItem("_pfa_dev_mode_"),void 0===n||n?$pfAnalytics.setDebug(t):window.location.reload()},$pfAnalytics.setQA=function(t){$pfAnalytics._.components.qa=$pfAnalytics._.components.qa||{},"string"==typeof t?($pfAnalytics._.components.qa.categories=sessionStorage.getItem("_pfa_qa_categories_")||"",$pfAnalytics._.components.qa.categories+=`${t},`,sessionStorage.setItem("_pfa_qa_categories_",$pfAnalytics._.components.qa.categories),sessionStorage.setItem("_pfa_qa_queue_","[]")):t?sessionStorage.getItem("_pfa_qa_queue_")||sessionStorage.setItem("_pfa_qa_queue_","[]"):(sessionStorage.removeItem("_pfa_qa_queue_"),sessionStorage.removeItem("_pfa_qa_pushes_"),sessionStorage.removeItem("_pfa_qa_categories_")),window.location.reload()}),$pfAnalytics._=$pfAnalytics._||{},$pfAnalytics._.versionsindex=$pfAnalytics._.versionsindex||{},$pfAnalytics.consent=$pfAnalytics.consent||{},$pfAnalytics.consent.setup=$pfAnalytics.consent.setup||{},function(){if(8800<(isNaN($pfAnalytics._.versionsindex._consent)?0:$pfAnalytics._.versionsindex._consent))return;if($pfAnalytics.isCategoryConsented&&void 0===$pfAnalytics.consent.setup.tool)return;if(!$pfAnalytics.consent.presets&&$pfAnalytics.consent.setup)$pfAnalytics.consent.presets={},$pfAnalytics.consent.presets.MAIN_SETTINGS=$pfAnalytics.consent.setup,$pfAnalytics.consent.presets.OTHER_SETTINGS={};else if(!$pfAnalytics.consent.presets||!$pfAnalytics.consent.presets.MAIN_SETTINGS||!$pfAnalytics.consent.presets.OTHER_SETTINGS)return void $pfAnalytics.deverror("[Consent] Cookies Consent - Presets not found or not properly defined",$pfAnalytics.consent.presets);$pfAnalytics._.versionsindex._consent=8800,$pfAnalytics.consent.cats={ANALYTICS:"analytics",ESSENTIAL:"essential",MARKETING:"marketing"};const t=$pfAnalytics.config.setup.EVENT_BEFORE_CONSENT_RUN||"pfABeforeConsentRun",n=$pfAnalytics.config.setup.EVENT_CONSENT_RUN||"pfAConsentRun",e=$pfAnalytics.config.setup.EVENT_CONSENT_GIVEN||"pfAConsentGiven",s=$pfAnalytics.config.setup.EVENT_CONSENT_CHANGED||"pfAConsentChange";$pfAnalytics.isCategoryConsented=function(t,n=!1){const e=$pfAnalytics.consent.cats;return!!$pfAnalytics.consent.setup.opt_out||t===e.ESSENTIAL||!(t!==e.ANALYTICS||!$pfAnalytics.consent.setup.analytics_essential)||!(t!==e.ANALYTICS&&!n&&$pfAnalytics.config.setup.PREVENT_TAGS_FROM_IFRAME&&window.top!==window.self)&&($pfAnalytics.consent.status&&Object.keys($pfAnalytics.consent.status).length||($pfAnalytics.consent.status=$pfAnalytics.consent.update()),!0===$pfAnalytics.consent.status.all||!0===$pfAnalytics.consent.status[t.replace("-others","")])},$pfAnalytics.consent.isDispatchAllowed=function(){if($pfAnalytics.consent.setup.opt_out)return!0;if(!0===$pfAnalytics.consent.setup.analytics_essential)return!0;const t=$pfAnalytics.consent.update(),n=JSON.stringify(t).toLowerCase(),e=n.includes("essential")?2:1,s=n.match(/true/g);return null!==s&&s.length>=e},$pfAnalytics.consent.dispatch=function(){const t=function(){if($pfAnalytics._.flags.websdk&&!window.pfDataLayerSDK?._state?.pfPage?.siteName)return void setTimeout(t,250);if(!$pfAnalytics.consent.triggered){const t=new CustomEvent(e,{detail:$pfAnalytics.consent.status});document.dispatchEvent(t),$pfAnalytics.log(`[Consent] "${e}" event dispatched (Initial Consent)`)}const n=new CustomEvent(s,{detail:$pfAnalytics.consent.status});document.dispatchEvent(n),$pfAnalytics.status.consent_dispatched=!0,$pfAnalytics.log(`[Consent] "${s}" event dispatched (Consent Changed)`)};"loading"!==document.readyState?t():document.addEventListener("DOMContentLoaded",t)},$pfAnalytics.consent.onConsentChange=function(t){},$pfAnalytics.consent.pushWaiting=function(t,n){window.Optanon.IsAlertBoxClosed()||"ALWAYS"===$pfAnalytics.consent?.setup?.reload||("function"==typeof n?($pfAnalytics._.queues.consentCategoryWaiting=$pfAnalytics._.queues.consentCategoryWaiting||[],$pfAnalytics._.queues.consentCategoryWaiting.push({category:t,callback:n})):$pfAnalytics.deverror(`[Consent] Consent Category Pending - Callback is not a function for category "${t}"`))},$pfAnalytics.consent.run=function(){var e;$pfAnalytics.status.consent_run?$pfAnalytics.log("[Consent] Consent already run"):("function"==typeof $pfAnalytics.consent.getTool?(e=$pfAnalytics.consent.getTool,document.addEventListener("pfABeforeConsentRun",(()=>{const t=$pfAnalytics.consent.presets.MAIN_SETTINGS;let n=JSON.parse(sessionStorage.getItem("_pfa_consent_settings_")||"{}");if(!n.tool){if(n=e(),!n||!n.tool)return void $pfAnalytics.deverror("[Consent] Do Setup Conditioned - Tool not returned from function");n.id&&"@settings"===n.id.trim()&&(n.id=t[n.tool].id),n.no_storage||sessionStorage.setItem("_pfa_consent_settings_",JSON.stringify(n))}$pfAnalytics.consent.setTool(n.tool,n.id||null,n)}))):$pfAnalytics.consent.setTool($pfAnalytics.consent.setup.tool),document.addEventListener(t,(()=>$pfAnalytics.status.consent_beforerun=!0)),document.addEventListener(n,(()=>$pfAnalytics.status.consent_run=!0)),document.dispatchEvent(new CustomEvent(t)),setTimeout((()=>document.dispatchEvent(new CustomEvent(n))),100))},$pfAnalytics.consent.setTool=function(t,n=null,e={}){const s=$pfAnalytics.consent.presets.MAIN_SETTINGS,a=$pfAnalytics.consent.presets.OTHER_SETTINGS;if(s[t]){if($pfAnalytics.consent.setup={...s[t]||{error_no_tool:!0},...a,...e},$pfAnalytics.consent.setup.ot_consent_categories=$pfAnalytics.consent.setup.ot_consent_categories||{essential:"C0001",analytics:"C0002",marketing:"C0004"},$pfAnalytics.consent.setup.tool=t,$pfAnalytics.consent.id=n||s[t].id||null,$pfAnalytics.consent.setup.id=$pfAnalytics.consent.id,$pfAnalytics.consent.isConfigured="None"!==t,!0===$pfAnalytics.consent.setup.hide_cookies_preference_btn){const t=document.createElement("style");t.innerHTML=".pfa-cookies-preferences-show-status { display: none !important; }",document.head.appendChild(t),$pfAnalytics.log("[Consent] Cookies Preference button hidden as per configuration")}}else $pfAnalytics.deverror(`[Consent] Cookies Consent - Do Setup - Tool "${t}" is not supported`)},$pfAnalytics.consent.update=$pfAnalytics.consent.update||function(){return{}}}(),$pfAnalytics.datalayer.append=function(){const t=this,n=arguments;$pfAnalytics.on.loaded((function(){$pfAnalytics.datalayer.append.apply(t,n)}))},$pfAnalytics.initialize=function(){const t=this,n=arguments;$pfAnalytics.on.loaded((function(){$pfAnalytics.initialize.apply(t,n)}))},$pfAnalytics.pageview=function(){const t=this,n=arguments;$pfAnalytics.on.loaded((function(){$pfAnalytics.pageview.apply(t,n)}))},$pfAnalytics.on.afterPageview=function(){const t=this,n=arguments;$pfAnalytics.on.loaded((function(){$pfAnalytics.on.afterPageview.apply(t,n)}))},$pfAnalytics.on.beforePageview=function(){const t=this,n=arguments;$pfAnalytics.on.loaded((function(){$pfAnalytics.on.beforePageview.apply(t,n)}))},$pfAnalytics.on.initialized=function(){const t=this,n=arguments;$pfAnalytics.on.loaded((function(){$pfAnalytics.on.initialized.apply(t,n)}))},$pfAnalytics.on.loaded=function(t,n=null){$pfAnalytics._.queues.frameworkloaded=$pfAnalytics._.queues.frameworkloaded||[],$pfAnalytics._.queues.frameworkloaded.push(t)},$pfAnalytics.on.ready=function(){const t=this,n=arguments;$pfAnalytics.on.loaded((function(){$pfAnalytics.on.ready.apply(t,n)}))},$pfAnalytics.debugPanel=function(){const t=this,n=arguments;$pfAnalytics.on.loaded((()=>$pfAnalytics.debugPanel.apply(t,n)))},$pfAnalytics.appendDataLayer=$pfAnalytics.datalayer.append,$pfAnalytics.onAnalyticsLoaded=$pfAnalytics.on.loaded,$pfAnalytics.onAnalyticsReady=$pfAnalytics.on.afterPageview,$pfAnalytics.appmeasurement.load=$pfAnalytics.loadBundle,$pfAnalytics.helpers.createScriptTag=$pfAnalytics.createScriptTag,$pfAnalytics._.queues.analyticsLoad=$pfAnalytics._.queues.frameworkloaded,$pfAnalytics._.status=$pfAnalytics.status,function(){if($pfAnalytics._.flags.isiframe=$pfAnalytics.isIframeWindow(),$pfAnalytics.isCategoryConsented||($pfAnalytics._.flags.isiframe?$pfAnalytics.isCategoryConsented=function(t){return"analytics"===t||!$pfAnalytics.config.setup.PREVENT_TAGS_FROM_IFRAME}:$pfAnalytics.isCategoryConsented=function(){return!0}),$pfAnalytics._.flags.isiframe){const t=function(){window.dispatchEvent(new Event($pfAnalytics.config.setup.EVENT_CONSENT_GIVEN)),$pfAnalytics.log(`"${$pfAnalytics.config.setup.EVENT_CONSENT_GIVEN}" event dispatched inside an iframe`)};"loading"!==document.readyState?t():document.addEventListener("DOMContentLoaded",t)}(window.location.search.includes("force-cookies-window")||$pfAnalytics._.flags.force_cookieswindow)&&$pfAnalytics.forceCookiesConsentWindow();const t=function(t){if(!t.detail)return void $pfAnalytics.error("No detail found in pfAnalyticsHandler event =>",t);if(!t.detail.handler)return void $pfAnalytics.error("No handler found in pfAnalyticsHandler event =>",t.detail);const n=t.detail.handler;$pfAnalytics.handlers[n]&&$pfAnalytics.handlers[n].processEvent?t.detail.data?($pfAnalytics.log("pfAnalyticsHandler event received =>",t.detail),$pfAnalytics.handlers[n].processEvent(t.detail.data)):$pfAnalytics.error(`No data found for ${n} in pfAnalyticsHandler event`,t.detail):$pfAnalytics.error(`No handler found for ${n} in pfAnalyticsHandler event`,t.detail)};"loading"===document.readyState?document.addEventListener("DOMContentLoaded",(()=>document.body.addEventListener("pfAnalyticsHandler",t))):document.body.addEventListener("pfAnalyticsHandler",t)}(),$pfAnalytics.versions.core="5.2.0",$pfAnalytics._.lastModified.core="2026-03-23",$pfAnalytics._.timestamp.core="202603231233",$pfAnalytics.log(`\n\n*******************************************************\n=> PROPERTY: ${_satellite.property.name} (${_satellite.environment.stage})\n=> PF_ANALYTICS CORE: v${$pfAnalytics.versions.core} (${$pfAnalytics._.lastModified.core})\n*******************************************************\n\n`);
+/* eslint-enable */
+});</script><script>_satellite["_runScript7"](function(event, target, Promise) {
+/*
+ * Pfizer Analytics Standards - Trigger Property Custom Code
+ * Created by Analytics Team
+ * Last Modified: 2025-10-16
+ * Version 1.0.0
+ * Description: Triggers a DOM event to allow setup custom code execution for the property
+ * Release notes:
+ * - Initial version (v1.0.0)
+ */
+
+(function(){
+
+  const eventName = $pfAnalytics.config?.setup?.EVENT_TRIGGER_CUSTOM_CODE ? $pfAnalytics.config.setup.EVENT_TRIGGER_CUSTOM_CODE : 'pfATriggerCustomCode';
+  document.dispatchEvent(new CustomEvent(eventName));
+
+})();
+});</script><script>_satellite["_runScript8"](function(event, target, Promise) {
+/*
+ * Pfizer Analytics Standards - PFAnalytics Initialize
+ * Created by Analytics Team
+ * Last Modified: 2025-11-07
+ * Version 2.2.0
+ * Description: Initializes the PFAnalytics framework when the consent is given
+ * Release notes:
+ *  - Implemented first version (v1.0.0)
+ *  - Modified to handle GRV pfConfig ovwerite logic using "isReadyToInit" function (v2.0.0)
+ *  - Added namespaces to log messages (v2.0.1)
+ *  - Added custom setup code execution (v2.1.0)
+ *  - Removed custom setup event triggering for using new approach (v2.2.0)
+ */
+
+$pfAnalytics = window.$pfAnalytics || {};
+$pfAnalytics.consent = $pfAnalytics.consent || {};
+
+if (!$pfAnalytics.consent.setup || $pfAnalytics.consent.setup.error_no_tool) { // Consent setup error
+  const error = !$pfAnalytics.consent.setup ? 'No Consent setup defined' : `Invalid Consent Tool: ${$pfAnalytics.consent.setup.tool}`;
+  const message = `Cookies Consent Setup: ${error}. Consent setup must be done in corresponding Launch Rule and expected consent tools are "None", "OneTrust" or "Evidon".`;
+  $pfAnalytics.deverror(message);
+  console.log('\n\n');
+  throw new Error(message);
+}
+
+(function(){
+
+  /****************************************************************************************/
+  /*                                    FUNCTIONS                                         */
+  /****************************************************************************************/
+
+  /**
+   * Validates if isReadyToInit function is defined and runs the initialization process
+   */
+  const init = function() {
+    $pfAnalytics.status.init_called = true;
+    if (typeof $pfAnalytics.isReadyToInit === 'function') {
+      $pfAnalytics.onConditionReady({
+        condition: $pfAnalytics.isReadyToInit,
+        callback: runInit,
+        onTimeOut: () => $pfAnalytics.deverror('Initialization process timed out, skipping initialization!'),
+        max: 30,
+      });
+    } else {
+      runInit();
+    }
+  };
+
+  /**
+   * Runs any custom setup code defined in $pfAnalytics._.custom array
+   */
+  const runCustomSetupCode = function() {
+    $pfAnalytics._.custom.forEach((fn) => {
+      try {
+        fn();
+      } catch (error) {
+        $pfAnalytics.deverror(`Custom setup error: ${error.message}`);
+      }
+    });
+    $pfAnalytics._.custom = null; // Clear custom setup functions after execution
+  };
+
+  /**
+   * Runs the initialization process for the framework when the consent is given
+   */
+  const runInit = function() {
+    $pfAnalytics.log('[Initialize] Initialization process started!');
+    // Check if the consent is already triggered
+    if ($pfAnalytics.consent.triggered) {
+      $pfAnalytics.log('[Initialize] Initialization process aborted, already initialized!');
+      return;
+    }
+    // Set the consent flag as triggered
+    $pfAnalytics.consent.triggered = true;
+    $pfAnalytics.status.consent_triggered = true;
+    // Check if there is any category consented
+    if (!validateConsent()) {
+      // If there is no category consented, skip the initialization
+      $pfAnalytics.log('[Initialize] No categories consented, skipping initialization!');
+      return;
+    }
+    if (!$pfAnalytics.isCategoryConsented('analytics')) {
+      // Analytics category is not consented
+      $pfAnalytics.loadBundle();
+    } else {
+      // Analytics category is consented
+      $pfAnalytics.loadBundle();
+      $pfAnalytics.initialize();
+      $pfAnalytics.on.initialized($pfAnalytics.pageview);
+    }
+    $pfAnalytics.status.initialize_run = true;
+    $pfAnalytics.log('[Initialize] Initialization process completed!');
+  };
+
+  /**
+   * Validates if there is any category consented
+   * @returns {boolean} - True if there is any category consented, false otherwise
+   */
+  const validateConsent = function () {
+    // Loop through the categories to check if there is any consented
+    const consentCategories = $pfAnalytics.consent.cats;
+    for (const category in consentCategories) {
+      if (!consentCategories.hasOwnProperty(category)) {
+        continue;
+      } else if ($pfAnalytics.isCategoryConsented(consentCategories[category])) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  /****************************************************************************************/
+  /*                                  RUN INITIALIZATION                                  */
+  /****************************************************************************************/
+
+  // Execute when the consent is given
+  document.addEventListener($pfAnalytics.config.setup.EVENT_CONSENT_GIVEN, init);
+
+  // Execute custom setup code if any are defined
+  if ($pfAnalytics._.custom && $pfAnalytics._.custom.length) {
+    runCustomSetupCode();
+  }
+
+  // Run the initialization process
+  $pfAnalytics.consent.run();
+
+})();
+});</script><script>_satellite["_runScript9"](function(event, target, Promise) {
+$pfAnalytics=window.$pfAnalytics||{},$pfAnalytics.consent=$pfAnalytics.consent||{},function(){const n=$pfAnalytics.consent.setup||null;n?"None"===n.tool?($pfAnalytics.log("Non-GDPR::Setup: Non-GDPR setup detected"),$pfAnalytics.consent.tool="None",$pfAnalytics.consent.status={all:!0},$pfAnalytics.consent.init=function(){$pfAnalytics.consent._initialized=!1,$pfAnalytics.consent.dispatch()},$pfAnalytics.consent.init()):$pfAnalytics.log(`Non-GDPR::Setup: GDPR is running. Selected tool: ${n.tool}`):$pfAnalytics.deverror("Non-GDPR::Setup: Verify consent setup object is defined")}();
+});</script><script src="https://analytics.digitalpfizer.com/js/dev/libs/pfanalytics-bundle.min.js?ts=1791212631288" defer=""></script><span id="recharts_measurement_span" aria-hidden="true" style="position: absolute; top: -20000px; left: 0px; padding: 0px; margin: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; white-space: pre;">2026-09-10</span><div id="option2-backdrop" hidden></div>
+<aside id="option2-drawer" hidden role="dialog" aria-modal="true" aria-labelledby="option2-drawer-name">
+  <div class="flex items-start justify-between gap-3 border-b border-divider px-5 py-4">
+    <div class="min-w-0">
+      <div class="flex flex-wrap items-center gap-2">
+        <h2 id="option2-drawer-name" class="font-display text-[18px] font-semibold text-ink"></h2>
+        <span id="option2-drawer-status"></span>
+      </div>
+      <p id="option2-drawer-npi" class="mt-0.5 font-mono text-[12px] text-ink-3"></p>
+    </div>
+    <button type="button" id="option2-drawer-close" aria-label="Close" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-ink-3 hover:bg-surface-alt hover:text-ink">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+    </button>
+  </div>
+  <div class="option2-drawer-body">
+    <section class="option2-section">
+      <h3 class="option2-label">Submitted by</h3>
+      <p id="option2-drawer-requester" class="option2-name"></p>
+      <a id="option2-drawer-email" class="option2-email" href="mailto:"></a>
+      <p id="option2-drawer-submitted" class="option2-meta"></p>
+    </section>
+    <section class="option2-section">
+      <h3 class="option2-label">Reinstatement justification</h3>
+      <div id="option2-drawer-justification" class="option2-justification"></div>
+    </section>
+    <section class="option2-section">
+      <h3 class="option2-label">Supporting documents</h3>
+      <div id="option2-drawer-docs"></div>
+    </section>
+  </div>
+  <div class="flex items-center justify-end gap-2 border-t border-divider px-5 py-3">
+    <button type="button" id="option2-reject" class="inline-flex h-9 items-center rounded-md border border-line bg-surface px-3.5 text-[13px] font-semibold text-ink-2 hover:border-line-strong hover:text-ink">Reject</button>
+    <button type="button" id="option2-approve" class="inline-flex h-9 items-center rounded-md bg-accent px-3.5 text-[13px] font-semibold text-white shadow-action hover:bg-accent-2">Approve</button>
+  </div>
+</aside>
+<script src="option2-admin.js"></script>
+</body></html>
